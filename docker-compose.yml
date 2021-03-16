@@ -7,7 +7,7 @@ services:
     networks:
       - employee-mysql
     environment:
-    DB_HOST: mysqldb:3306
+      DB_HOST: mysqldb:3306
       DB_USER: vdbuser
       DB_PASSWORD: vdbpass
       DB_NAME: vdbname
