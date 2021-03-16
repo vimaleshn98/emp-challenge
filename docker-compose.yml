@@ -6,6 +6,11 @@ services:
       - "8080:8080"
     networks:
       - employee-mysql
+    environment:
+    DB_HOST: mysqldb:3306
+        DB_USER: vdbuser
+        DB_PASSWORD: vdbpass
+        DB_NAME: vdbname
     depends_on:
       - mysqldb
  
@@ -13,9 +18,15 @@ services:
     image: mysql:8
     networks:
       - employee-mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=bootdb  
+   ports:
+      - 3306:3306
+   environment:
+      MYSQL_DATABASE: vdbname
+      MYSQL_USER: vdbuser
+      MYSQL_PASSWORD: vdbpass
+      MYSQL_ROOT_PASSWORD: vdbpassroot
+   volumes:
+     - db_data:/var/lib/mysql  
 
 networks:
   employee-mysql:
